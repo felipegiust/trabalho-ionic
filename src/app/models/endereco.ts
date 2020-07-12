@@ -4,8 +4,8 @@ import { Uf } from '../enums/uf.enum';
 export interface Endereco {
     logradouro: string;
     cidade: string;
-    UF:Uf;
-    cep: number;
+    uf: Uf;
+    cep: string;
     numero: number;
     complemento: string;
 }

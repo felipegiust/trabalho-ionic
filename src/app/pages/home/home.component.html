@@ -17,7 +17,8 @@
 
     <div id="container">
       <ion-list>
-        <ion-item button [routerLink]="['pacientes']">
+
+        <ion-item button (click)="navigate(['./pacientes'])">
           <ion-icon slot="start" name="person-add"></ion-icon>
           <ion-label>
             <h3>Pacientes</h3>

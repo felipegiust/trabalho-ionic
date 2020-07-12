@@ -10,3 +10,8 @@ export interface Consulta {
     descricao:string;
     prioridade:Prioridade;
 }
+
+const medicos = [{
+    nome: "sdf",
+    id: 1
+}]

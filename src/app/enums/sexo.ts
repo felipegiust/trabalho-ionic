@@ -1,4 +1,4 @@
 export enum Sexo {
-    M= "Masculino",
-    F="Feminino",
+    M = "Masculino",
+    F = "Feminino",
 }

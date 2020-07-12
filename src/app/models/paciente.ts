@@ -3,7 +3,7 @@ import { Sexo } from './../enums/sexo';
 import { Endereco } from './endereco';
 
 export interface Paciente {
-    id: number;
+    id?: number;
     nome: string;
     nascimento:Date;
     sexo:Sexo;
