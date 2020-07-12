@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
 
   navigate(route) {
     this.routerService.navigate(['/pacientes'])
+    this.routerService.navigate(['/consultas'])
   }
 
 }

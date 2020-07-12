@@ -1,3 +1,102 @@
-<p>
-  cadastro works!
-</p>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Cadastro de Consulta
+    </ion-title>
+
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="content">
+    <ion-item-divider class="divider">
+      <ion-label>
+        Dados da Consulta
+      </ion-label>
+    </ion-item-divider>
+
+    <ion-item>
+      <ion-label position="floating">Nome do </ion-label>
+      <ion-input autofocus="true" inputmode="text" maxlength="100" required="true" type="text"
+        [(ngModel)]="paciente.nome">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Data de Nascimento</ion-label>
+      <ion-input autofocus="true" type="date" required="true" [(ngModel)]="paciente.nascimento">
+      </ion-input>
+    </ion-item>
+
+    <ion-item button (click)="showSexoPicker()">
+      <ion-label>Sexo</ion-label>
+      <ion-note slot="end">{{ sexoEnum[paciente.sexo] }}</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">CPF</ion-label>
+      <ion-input autofocus="true" inputmode="text" maxlength="14" required="true" [(ngModel)]="paciente.cpf"
+        mask="000.000.000-00">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Telefone</ion-label>
+      <ion-input autofocus="true" type="number" inputmode="number" maxlength="15" required="true"
+        [(ngModel)]="paciente.telefone">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Profissão</ion-label>
+      <ion-input autofocus="true" inputmode="text" maxlength="100" required="true" type="text"
+        [(ngModel)]="paciente.profissao">
+      </ion-input>
+    </ion-item>
+
+    <section class="endereco">
+      <ion-item-divider class="divider">
+        <ion-label>
+          Endereço
+        </ion-label>
+      </ion-item-divider>
+
+      <ion-item>
+        <ion-label position="floating">CEP</ion-label>
+        <ion-input autofocus="true" inputmode="number" required="true" [(ngModel)]="paciente.cep" mask="00000-000">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Estado</ion-label>
+        <ion-select cancelText="Cancelar" okText="Selecionar" interface="alert" [(ngModel)]="paciente.uf">
+          <ion-select-option *ngFor="let estado of estadosOptions" [value]="estado.value">
+            {{estado.label}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Cidade</ion-label>
+        <ion-input autofocus="true" inputmode="text" maxlength="100" required="true" type="text"
+          [(ngModel)]="paciente.cidade">
+        </ion-input>
+      </ion-item>
+
+    </section>
+
+  </ion-list>
+  <ion-button (click)="add()" [routerLink]="['/jogo-cad']" color="primary" [disabled]="!podeAdicionar">Adicionar
+    <ion-icon size="large" name="checkmark"></ion-icon>
+  </ion-button>
+
+  <ion-button (click)="limpar()" color="danger">
+    Limpar
+    <ion-icon size="large" name="close-outline"></ion-icon>
+  </ion-button>
+
+</ion-content>
