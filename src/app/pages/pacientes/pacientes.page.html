@@ -1,10 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Paciente</ion-title>
+    <ion-title>Pacientes</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-item *ngFor="let paciente of pacientes">
+    <ion-avatar slot="start">
+      <img [src]="paciente.fotoUrl">
+    </ion-avatar>
+    <ion-label>
+      <h2>{{paciente.nome}}</h2>
+      <p>Endereço: {{paciente.endereco.logradouro}}, {{paciente.endereco.cidade}} - {{paciente.endereco.uf}}</p>
+      <ion-row>
+        <ion-button color="success" (click)="editarPaciente(paciente)">
+          Editar
+        </ion-button>
+        <ion-button color="danger" (click)="excluirPaciente(paciente)"> 
+          Excluir
+        </ion-button>
+      </ion-row>
+    </ion-label>
+  </ion-item>
+
   <ion-fab vertical="bottom" horizontal="end">
     <ion-fab-button [routerLink]="['cadastro']">
       <ion-icon name="add"></ion-icon>

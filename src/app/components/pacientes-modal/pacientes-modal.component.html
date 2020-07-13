@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-button (click)="dismiss()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>
+            Lista de Pacientes
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-searchbar placeholder="Pesquisar paciente" [debounce]="100" (ionInput)="pesquisar($event)"></ion-searchbar>
+
+    <ion-list>
+        <ion-item [color]="selecionado && selecionado.id === paciente.id && 'primary'"
+            *ngFor="let paciente of pacientes" button (click)="selecionar(paciente)">
+            <ion-label>
+                <ion-text>
+                    <h2>
+                        <strong>{{paciente.nome}}</strong>
+                    </h2>
+                </ion-text>
+                <h4>
+                    Profissão: <ion-text color="danger"><strong>{{paciente.profissao}}</strong></ion-text>
+                </h4>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

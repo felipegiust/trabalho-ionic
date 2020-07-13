@@ -1,3 +1,4 @@
+import { PacientesModalComponent } from './../../components/pacientes-modal/pacientes-modal.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 

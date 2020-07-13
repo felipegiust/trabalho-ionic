@@ -1,3 +1,5 @@
+import { PacientesModalComponent } from './../../components/pacientes-modal/pacientes-modal.component';
+import { CadastroComponent } from './cadastro/cadastro.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +17,6 @@ import { ConsultasPage } from './consultas.page';
     IonicModule,
     ConsultasPageRoutingModule
   ],
-  declarations: [ConsultasPage]
+  declarations: [ConsultasPage, CadastroComponent],
 })
 export class ConsultasPageModule {}

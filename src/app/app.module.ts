@@ -1,3 +1,4 @@
+import { PacientesModalComponent } from './components/pacientes-modal/pacientes-modal.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -11,8 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import {NgxMaskIonicModule} from 'ngx-mask-ionic'
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent, PacientesModalComponent],
+  entryComponents: [PacientesModalComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

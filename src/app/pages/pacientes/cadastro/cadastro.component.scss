@@ -15,5 +15,11 @@
 }
 
 ion-item {
-    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
 }

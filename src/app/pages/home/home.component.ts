@@ -14,9 +14,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {}
 
-  navigate(route) {
+  toPacientes() {
     this.routerService.navigate(['/pacientes'])
-    this.routerService.navigate(['/consultas'])
   }
 
+  toConsultas() {
+    this.routerService.navigate(['/consultas'])
+  }
 }
