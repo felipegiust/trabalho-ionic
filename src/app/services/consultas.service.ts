@@ -11,36 +11,6 @@ import { CrudService } from "./crud.service";
 export class ConsultasService extends CrudService<Consulta> {
   constructor() {
     super();
-    this.data = [
-      {
-        id: 1,
-        medico: {
-          nome: "Rodrigo",
-          especialidade: "pediátrico",
-        },
-        data: new Date(),
-        paciente: {
-          nascimento: new Date(),
-          sexo: Sexo.F,
-          profissao: "asdsa",
-          telefone: "0000",
-          nome: "Zé droguinha",
-          fotoUrl:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSZ6_lBs87kjL8qQYMpc2V4d35qqTRccNFcjg&usqp=CAU",
-          cpf: "0000000",
-          endereco: {
-            cep: "0000",
-            cidade: "Criciúma",
-            complemento: "sadas",
-            logradouro: "sdad",
-            numero: 100,
-            uf: Uf.SC,
-          }
-        },
-        descricao: "A descriação está aqui....",
-        prioridade: Prioridade.ALTISSIMO,
-      },
-    ];
   }
 
   getAll(termoPesquisa: string = "") {
