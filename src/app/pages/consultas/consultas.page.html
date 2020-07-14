@@ -12,7 +12,7 @@
         Prioridade:<h2 [style.color]="corByPrioridade[consulta.prioridade]">{{consulta.prioridade}}</h2>
       </h2>
 
-      <p>Data: {{consulta.data | date: 'dd/MM/yyyy'}}</p>
+      <p>Data: {{consulta.data | date: 'dd/MM/yyyy HH:mm'}}</p>
       <p> Medico: {{consulta.medico.nome}} - {{consulta.medico.especialidade}}</p>
       <p> Paciente: {{consulta.paciente.nome}}</p>
       <div class="dados-paciente" *ngIf="consulta.verMais">

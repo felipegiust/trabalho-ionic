@@ -36,19 +36,15 @@ export class CadastroComponent {
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
-    this.init();
+    this.limpar();
   }
 
-  init() {
+  ionViewWillEnter() {
     this.limpar();
     const id = parseInt(this.activatedRoute.snapshot.params["id"]);
     if (id) {
       this.paciente = this.pacientesService.getById(id);
     }
-  }
-
-  ionViewWillEnter() {
-    this.limpar()
   }
 
   salvar() {
