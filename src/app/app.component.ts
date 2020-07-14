@@ -23,7 +23,6 @@ export class AppComponent implements OnInit {
       icon: 'document-text-outline'
     }
   ];
-  public labels = ['Alterar Modo'];
 
   constructor(
     private platform: Platform,

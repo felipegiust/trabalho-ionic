@@ -4,14 +4,20 @@ import { Component, OnInit } from "@angular/core";
 import { Sexo } from "src/app/enums/sexo";
 import { PickerController } from "@ionic/angular";
 import { PacientesService } from "src/app/services/pacientes.service";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
+import {
+  FormGroup,
+  FormBuilder,
+  FormControl,
+  Validators,
+} from "@angular/forms";
 
 @Component({
   selector: "app-cadastro",
   templateUrl: "./cadastro.component.html",
   styleUrls: ["./cadastro.component.scss"],
 })
-export class CadastroComponent implements OnInit {
+export class CadastroComponent {
   sexoEnum = Sexo;
 
   estadosOptions = Object.keys(Uf).map((uf) => ({
@@ -21,23 +27,33 @@ export class CadastroComponent implements OnInit {
 
   paciente: Paciente;
 
+  formBuilder: FormBuilder = new FormBuilder();
+  validation: FormGroup;
+
   constructor(
     private picker: PickerController,
     private pacientesService: PacientesService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
+    this.init();
+  }
 
-  ngOnInit() {
+  init() {
+    this.limpar();
+    const id = parseInt(this.activatedRoute.snapshot.params["id"]);
+    if (id) {
+      this.paciente = this.pacientesService.getById(id);
+    }
+  }
+
+  ionViewWillEnter() {
     this.limpar()
   }
 
   salvar() {
     this.pacientesService.salvar(this.paciente);
     this.router.navigate(["./pacientes"]);
-  }
-
-  get podeAdd() {
-    return true;
   }
 
   async showSexoPicker() {
@@ -83,10 +99,10 @@ export class CadastroComponent implements OnInit {
         numero: null,
         uf: null,
       },
-      nascimento: new Date(),
+      nascimento: null,
       telefone: "",
       sexo: Sexo.F,
       profissao: "",
-    }
+    };
   }
 }

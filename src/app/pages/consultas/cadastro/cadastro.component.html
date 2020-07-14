@@ -26,8 +26,8 @@
 
     <ion-item>
       <ion-label position="stacked">Data</ion-label>
-      <ion-input autofocus="true" type="date" required="true" [(ngModel)]="consulta.data">
-      </ion-input>
+      <ion-datetime displayFormat="DD MMM YYYY" required="true" [(ngModel)]="consulta.data">
+      </ion-datetime>
     </ion-item>
 
     <ion-item button (click)="abriModalPaciente()">
@@ -37,19 +37,19 @@
 
     <ion-item>
       <ion-label position="floating">Descrição</ion-label>
-      <ion-input autofocus="true" type="number" inputmode="number" maxlength="15" required="true"
+      <ion-input autofocus="true" type="text" inputmode="number" required="true"
         [(ngModel)]="consulta.descricao">
       </ion-input>
     </ion-item>
 
     <ion-item button (click)="showPrioridadePicker()">
       <ion-label>Prioridade</ion-label>
-      <ion-note slot="end">{{prioridadeEnum[consulta.prioridade]}}</ion-note>
+      <ion-note slot="end">{{consulta.prioridade}}</ion-note>
     </ion-item>
 
 
   </ion-list>
-  <ion-button (click)="add()" [routerLink]="['/jogo-cad']" color="primary" [disabled]="!podeAdicionar">Adicionar
+  <ion-button (click)="salvar()" color="primary">Adicionar
     <ion-icon size="large" name="checkmark"></ion-icon>
   </ion-button>
 

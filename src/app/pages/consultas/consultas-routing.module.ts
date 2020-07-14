@@ -12,6 +12,10 @@ const routes: Routes = [
     component: ConsultasPage
   },
   {
+    path: ':id',
+    component: CadastroComponent
+  },
+  {
     path: 'cadastro',
     component: CadastroComponent
   }

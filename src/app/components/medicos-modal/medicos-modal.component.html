@@ -1,5 +1,10 @@
 <ion-header>
   <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-button (click)="dismiss()">
+              <ion-icon name="arrow-back"></ion-icon>
+          </ion-button>
+      </ion-buttons>
       <ion-title>
           Lista de Medicos
       </ion-title>
@@ -8,11 +13,10 @@
 
 <ion-content>
   <ion-searchbar placeholder="Pesquisar medicos" [debounce]="100" (ionInput)="pesquisar($event)"></ion-searchbar>
-  <ion-list>
-      <ion-item-sliding *ngFor="let medico of medico">
-          <ion-item>
+  <ion-list *ngFor="let medico of medicos" button (click)="selecionar(medico)">
+          <ion-item [color]="selecionado && selecionado.id === medico.id && 'primary'">
               <ion-label>
-                  <ion-text color="primary">
+                  <ion-text>
                       <h2>
                           <strong>{{medico.nome}}</strong>
                       </h2>
@@ -21,6 +25,5 @@
                       Especialidade: <strong>{{medico.especialidade}}</strong></h3>
               </ion-label>
           </ion-item>
-      </ion-item-sliding>
   </ion-list>
 </ion-content>

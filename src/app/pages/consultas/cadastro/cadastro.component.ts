@@ -1,3 +1,6 @@
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { ConsultasService } from './../../../services/consultas.service';
 import { MedicosModalComponent } from "./../../../components/medicos-modal/medicos-modal.component";
 import { PacientesModalComponent } from "./../../../components/pacientes-modal/pacientes-modal.component";
 import { Paciente } from "./../../../models/paciente";
@@ -18,13 +21,22 @@ export class CadastroComponent implements OnInit {
 
   constructor(
     private picker: PickerController,
-    // private consultasService: C,
-    // private router: Router
-    private modalController: ModalController
+    private consultasService: ConsultasService,
+    private router: Router,
+    private modalController: ModalController,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.limpar();
+  }
+
+  ionViewWillEnter() {
+    this.limpar()
+    const id = parseInt(this.activatedRoute.snapshot.params["id"]);
+    if (id) {
+      this.consulta = this.consultasService.getById(id);
+    }
   }
 
   get podeAdd() {
@@ -32,8 +44,8 @@ export class CadastroComponent implements OnInit {
   }
 
   salvar() {
-    // this.consultasService.salvar(this.consulta);
-    // this.router.navigate(["./consultas"]);
+    this.consultasService.salvar(this.consulta);
+    this.router.navigate(["./consultas"]);
   }
 
   async showPrioridadePicker() {
@@ -45,7 +57,7 @@ export class CadastroComponent implements OnInit {
             options: Object.keys(Prioridade).map((prioridade) => {
               return {
                 text: Prioridade[prioridade] as string,
-                value: prioridade,
+                value: Prioridade[prioridade],
               };
             }),
           },
@@ -68,7 +80,7 @@ export class CadastroComponent implements OnInit {
   }
   limpar() {
     this.consulta = {
-      data: new Date(),
+      data: null,
       descricao: "",
       prioridade: Prioridade.NORMAL,
     };
@@ -78,11 +90,11 @@ export class CadastroComponent implements OnInit {
     const modal = await this.modalController.create({
       component: PacientesModalComponent,
       componentProps: {
-        selecionado: this.consulta.paciente
-      }
+        selecionado: this.consulta.paciente,
+      },
     });
     modal.onDidDismiss().then(({ data: paciente }) => {
-      if(paciente) {
+      if (paciente) {
         this.consulta.paciente = paciente;
       }
     });
@@ -93,8 +105,13 @@ export class CadastroComponent implements OnInit {
     const modal = await this.modalController.create({
       component: MedicosModalComponent,
       componentProps: {
-        selecionado: this.consulta.paciente,
+        selecionado: this.consulta.medico,
       },
+    });
+    modal.onDidDismiss().then(({ data: medico }) => {
+      if (medico) {
+        this.consulta.medico = medico;
+      }
     });
 
     await modal.present();

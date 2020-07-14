@@ -1,15 +1,17 @@
+import { CrudService } from "./crud.service";
 import { Paciente } from "./../models/paciente";
 import { Injectable } from "@angular/core";
 import { Sexo } from "../enums/sexo";
 import { Uf } from "../enums/uf.enum";
+import { random, merge } from "lodash";
 
 @Injectable({
   providedIn: "root",
 })
-export class PacientesService {
-  private pacientes: Paciente[];
+export class PacientesService extends CrudService<Paciente> {
   constructor() {
-    this.pacientes = [
+    super();
+    this.data = [
       {
         nome: "Zé droguinha",
         fotoUrl:
@@ -31,17 +33,4 @@ export class PacientesService {
       },
     ];
   }
-
-  salvar(paciente: Paciente) {
-    this.pacientes.push(paciente);
-    console.log(this.pacientes);
-  }
-
-  getAll(termoPesquisa: string = "") {
-    const termo = termoPesquisa.toLowerCase()
-    return this.pacientes.filter(paciente => {
-      return paciente.nome.includes(termo)
-    })
-  }
-
 }

@@ -5,6 +5,42 @@
 </ion-header>
 
 <ion-content>
+  <ion-item *ngFor="let consulta of consultas">
+    <ion-label>
+      <h2>Codigo Consulta: {{consulta.id}}</h2>
+      <h2 class="prioridade">
+        Prioridade:<h2 [style.color]="corByPrioridade[consulta.prioridade]">{{consulta.prioridade}}</h2>
+      </h2>
+
+      <p>Data: {{consulta.data | date: 'dd/MM/yyyy'}}</p>
+      <p> Medico: {{consulta.medico.nome}} - {{consulta.medico.especialidade}}</p>
+      <p> Paciente: {{consulta.paciente.nome}}</p>
+      <div class="dados-paciente" *ngIf="consulta.verMais">
+        <p>Idade: {{calculaIdadePaciente(consulta.paciente)}} anos - Telefone:
+          {{consulta.paciente.telefone}} </p>
+        <p>Sexo: {{consulta.paciente.sexo}} - Profissão: {{consulta.paciente.profissao}} </p>
+        <p>Descrição da consulta: {{consulta.descricao}}</p>
+      </div>
+      <ion-row>
+        <ion-button color="success" (click)="editarConsulta(consulta)">
+          Editar
+        </ion-button>
+        <ion-button color="danger" (click)="excluirConsulta(consulta)">
+          Excluir
+        </ion-button>
+        <ion-button color="primary" (click)="consulta.verMais = !consulta.verMais">
+          Ver mais
+        </ion-button>
+      </ion-row>
+    </ion-label>
+  </ion-item>
+
+  <div *ngIf="!consultas.length">
+    <h5 style="text-align: center;">
+      Nenhuma consulta encontrada
+    </h5>
+  </div>
+
   <ion-fab vertical="bottom" horizontal="end">
     <ion-fab-button [routerLink]="['cadastro']">
       <ion-icon name="add"></ion-icon>

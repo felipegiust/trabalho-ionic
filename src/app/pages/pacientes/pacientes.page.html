@@ -23,6 +23,12 @@
     </ion-label>
   </ion-item>
 
+  <div *ngIf="!pacientes.length">
+    <h5 style="text-align: center;">
+      Nenhum paciente encontrado
+    </h5>
+  </div>
+
   <ion-fab vertical="bottom" horizontal="end">
     <ion-fab-button [routerLink]="['cadastro']">
       <ion-icon name="add"></ion-icon>

@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>
-      Cadastro de Pacientes
+      {{paciente.id? "Editar paciente": "Cadastrar de paciente"}}
     </ion-title>
 
     <ion-buttons slot="start">
@@ -28,8 +28,8 @@
 
     <ion-item>
       <ion-label position="stacked">Data de Nascimento</ion-label>
-      <ion-input type="date" required="true" [(ngModel)]="paciente.nascimento">
-      </ion-input>
+      <ion-datetime displayFormat="DD MMM YYYY" required="true" [(ngModel)]="paciente.nascimento">
+      </ion-datetime>
     </ion-item>
 
     <ion-item button (click)="showSexoPicker()">
@@ -45,7 +45,8 @@
 
     <ion-item>
       <ion-label position="floating">Telefone</ion-label>
-      <ion-input type="number" inputmode="number" maxlength="15" required="true" [(ngModel)]="paciente.telefone">
+      <ion-input inputmode="number" maxlength="15" required="true" [(ngModel)]="paciente.telefone"
+        mask="(00) 00000-0000">
       </ion-input>
     </ion-item>
 
@@ -70,7 +71,7 @@
 
       <ion-item>
         <ion-label position="floating">CEP</ion-label>
-        <ion-input inputmode="number" required="true" [(ngModel)]="paciente.endereco.cep" mask="00000-000">
+        <ion-input inputmode="number" required="true" mask="00000-000" [(ngModel)]="paciente.endereco.cep">
         </ion-input>
       </ion-item>
 
@@ -85,16 +86,27 @@
 
       <ion-item>
         <ion-label position="floating">Cidade</ion-label>
-        <ion-input autofocus="true" inputmode="text" equired="true" type="text" [(ngModel)]="paciente.endereco.cidade">
+        <ion-input inputmode="text" equired="true" type="text" [(ngModel)]="paciente.endereco.cidade">
         </ion-input>
       </ion-item>
 
+      <ion-item>
+        <ion-label position="floating">Número</ion-label>
+        <ion-input inputmode="text" required="true" type="text" [(ngModel)]="paciente.endereco.numero">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Complemento</ion-label>
+        <ion-input inputmode="text" type="text" [(ngModel)]="paciente.endereco.complemento">
+        </ion-input>
+      </ion-item>
     </section>
 
 
   </ion-list>
   <section class="actions">
-    <ion-button (click)="salvar()" [routerLink]="['/jogo-cad']" color="primary" [disabled]="!podeAdd">
+    <ion-button (click)="salvar()" [routerLink]="['/jogo-cad']" color="primary">
       Salvar
       <ion-icon size="large" name="checkmark"></ion-icon>
     </ion-button>
